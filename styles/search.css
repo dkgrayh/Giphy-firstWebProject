@@ -1,0 +1,43 @@
+.search-container {
+  display: block;
+  position: absolute;
+  top: 100px;
+  left: 0;
+  right: 0;
+}
+
+input#search {
+  height: 45px;
+  font-size: 1rem;
+  outline: none;
+  border: none;
+  border-radius: 5px;
+  box-sizing: border-box;
+  padding: 0 20px;
+  width: 100%;
+
+  &:focus {
+    outline: 1px solid #008abf;
+    transition: 0.35s ease;
+    color: #008abf;
+  }
+}
+
+.search-icon {
+  position: absolute;
+  width: 46px;
+  height: 46px;
+  top: 0;
+  right: 0;
+}
+
+#search-view h1 {
+  font-family: 'Roboto', sans-serif;
+  font-size: large;
+  display: flex;
+}
+
+#search-view {
+  background: #212121;
+  padding: 5%;
+}
