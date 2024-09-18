@@ -1,18 +1,23 @@
-
 # PURRRPL GIFS
 
-PURRRPL GIFS is a web application for discovering and managing GIFs. Users can explore trending GIFs, upload their own GIFs, mark GIFs as favorites, and search for specific GIFs. This README provides an overview of the project, its structure, and instructions for running the application.
+PURRRPL GIFS is a JavaScript application that displays GIFs using the [Giphy API](https://developers.giphy.com/). The app fetches and presents trending and searched GIFs in a fun and user-friendly interface.
 
 ## Table of Contents
+
 - [PURRRPL GIFS](#purrrpl-gifs)
   - [Table of Contents](#table-of-contents)
   - [Features](#features)
   - [Project Structure](#project-structure)
   - [Installation](#installation)
   - [Usage](#usage)
+  - [API Reference](#api-reference)
+  - [Example API Usage](#example-api-usage)
   - [Contributing](#contributing)
+  - [License](#license)
+    - [Add a `package.json`:](#add-a-packagejson)
 
 ## Features
+
 - **Home Page:** View a selection of trending GIFs.
 - **Trending Page:** Explore the latest trending GIFs.
 - **Uploaded Page:** Access GIFs that you have uploaded.
@@ -25,7 +30,9 @@ PURRRPL GIFS is a web application for discovering and managing GIFs. Users can e
 - **Load More:** Load additional GIFs on the Home and Trending pages.
 
 ## Project Structure
+
 The project is structured as follows:
+
 - **HTML:** The main HTML file is `index.html`, which serves as the structure of the web application.
 - **CSS:** Styles are defined in the `main.css` file, and the project also uses external CSS libraries.
 - **JavaScript:** The functionality of the application is powered by JavaScript. JavaScript files are organized in the `src` directory, and various modules and event listeners handle different aspects of the application.
@@ -38,24 +45,57 @@ The project is structured as follows:
 - **Views:** The structure and rendering of search results are defined in `views/search-view.js`.
 
 ## Installation
+
 To run the PURRRPL GIFS web application on your local machine, follow these steps:
+
 1. Clone the repository to your local machine:
 
 2. Git clone https://github.com/Giphy-Project-Buddy-Group-14/Giphy.git
 
-
 ## Usage
-Upon opening the application, you can navigate between different pages using the navigation links in the header.
 
-The "Home" and "Trending" pages display trending GIFs, and you can load more GIFs on these pages.
-Use the "Upload" button to upload your own GIFs.
-The search functionality allows you to search for GIFs by keywords and Enter button.
-Mark GIFs as favorites by clicking the heart icon, and they will appear on the "Favorites" page.
-Clicking on a GIF will take you to the details page for that GIF.
+1. Obtain an API key from the [Giphy Developer Portal](https://developers.giphy.com/).
+2. Replace YOUR_GIPHY_API_KEY in the .env file with your actual Giphy API key.
+
+## API Reference
+
+This application uses the Giphy API to fetch GIFs.
+
+1. GET /gifs/trending: Fetch a list of trending GIFs.
+   Query Parameters:
+   - api_key (string): Your Giphy API key.
+   - limit (number): Number of GIFs to fetch.
+2. GET /gifs/search: Search for GIFs by keyword.
+   Query Parameters:
+   - q (string): Search query for GIFs.
+   - api_key (string): Your Giphy API key.
+   - limit (number): Number of GIFs to fetch.
+
+## Example API Usage
+
+- Here is an example of how to make an API call in the JavaScript file:
+
+```rust
+export const loadTrendingGifs = async () => {
+  try {
+    const response = await fetch(
+        `${GIPHY_API_BASE_URL}/trending?api_key=${API_KEY}&rating=g`,
+    );
+    if (response.ok) {
+      const data = await response.json();
+      return data.data;
+    }
+  } catch (error) {
+    console.error(error);
+  }
+};
+```
+
 ## Contributing
+
 If you'd like to contribute to this project, please follow these steps:
 
--  Fork the repository to your GitHub account.
+- Fork the repository to your GitHub account.
 - Clone the forked repository to your local machine.
 - Create a new branch for your feature or bug fix.
 - Make your changes and commit them with descriptive commit messages.
@@ -63,4 +103,14 @@ If you'd like to contribute to this project, please follow these steps:
 - Create a pull request to the main repository.
 - Wait for the maintainers to review your pull request.
 
+## License
 
+This project is licensed under the MIT License. See the LICENSE file for more information.
+
+- **`.env`**: This file is used to securely store the Giphy API key. The `.env` package (loaded through `dotenv`) reads this file and sets environment variables in the Node.js application.
+- **`npm install`**: You can use this command to install any additional Node.js packages if required in the future.
+- **`npm start`**: This command runs the script defined in the `"scripts"` section of `package.json`. You can set up a script to open the `index.html` file automatically.
+
+#### Add a `package.json`:
+
+Create a `package.json` file to manage the project dependencies and scripts:
